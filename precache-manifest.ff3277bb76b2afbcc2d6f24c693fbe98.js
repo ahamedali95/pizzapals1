@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "cd6c777f1945164224dee082abaea03a",
-    "url": "/pizzapals1/static/media/outline-icons.cd6c777f.woff2"
+    "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
+    "url": "/pizzapals1/static/media/icons.b87b9ba5.ttf"
   },
   {
-    "revision": "e213a047d0c45cf09f10",
+    "revision": "ed86607193d91f0ed1ce",
     "url": "/pizzapals1/static/css/main.37536a71.chunk.css"
   },
   {
@@ -20,32 +20,32 @@ self.__precacheManifest = [
     "url": "/pizzapals1/static/js/runtime~main.d41aa432.js"
   },
   {
-    "revision": "9c74e172f87984c48ddf5c8108cabe67",
-    "url": "/pizzapals1/static/media/flags.9c74e172.png"
+    "revision": "0ab54153eeeca0ce03978cc463b257f7",
+    "url": "/pizzapals1/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
-    "url": "/pizzapals1/static/media/icons.8e3c7f55.eot"
+    "revision": "9c74e172f87984c48ddf5c8108cabe67",
+    "url": "/pizzapals1/static/media/flags.9c74e172.png"
   },
   {
     "revision": "faff92145777a3cbaf8e7367b4807987",
     "url": "/pizzapals1/static/media/icons.faff9214.woff"
   },
   {
-    "revision": "0ab54153eeeca0ce03978cc463b257f7",
-    "url": "/pizzapals1/static/media/icons.0ab54153.woff2"
-  },
-  {
-    "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
-    "url": "/pizzapals1/static/media/icons.b87b9ba5.ttf"
+    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
+    "url": "/pizzapals1/static/media/icons.8e3c7f55.eot"
   },
   {
     "revision": "701ae6abd4719e9c2ada3535a497b341",
     "url": "/pizzapals1/static/media/outline-icons.701ae6ab.eot"
   },
   {
-    "revision": "e213a047d0c45cf09f10",
-    "url": "/pizzapals1/static/js/main.e213a047.chunk.js"
+    "revision": "cd6c777f1945164224dee082abaea03a",
+    "url": "/pizzapals1/static/media/outline-icons.cd6c777f.woff2"
+  },
+  {
+    "revision": "ed86607193d91f0ed1ce",
+    "url": "/pizzapals1/static/js/main.ed866071.chunk.js"
   },
   {
     "revision": "ef60a4f6c25ef7f39f2d25a748dbecfe",
@@ -60,6 +60,10 @@ self.__precacheManifest = [
     "url": "/pizzapals1/static/media/icons.962a1bf3.svg"
   },
   {
+    "revision": "82f60bd0b94a1ed68b1e6e309ce2e8c3",
+    "url": "/pizzapals1/static/media/outline-icons.82f60bd0.svg"
+  },
+  {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
     "url": "/pizzapals1/static/media/brand-icons.e8c322de.woff2"
   },
@@ -70,10 +74,6 @@ self.__precacheManifest = [
   {
     "revision": "a046592bac8f2fd96e994733faf3858c",
     "url": "/pizzapals1/static/media/brand-icons.a046592b.woff"
-  },
-  {
-    "revision": "82f60bd0b94a1ed68b1e6e309ce2e8c3",
-    "url": "/pizzapals1/static/media/outline-icons.82f60bd0.svg"
   },
   {
     "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/pizzapals1/static/css/1.33eeb13f.chunk.css"
   },
   {
-    "revision": "b61e932a7da97bb8489db5e6ac1a400d",
+    "revision": "d4aa73ff00a06c7de06de34e8543d4a0",
     "url": "/pizzapals1/index.html"
   }
 ];
