@@ -22,10 +22,16 @@ class NewPizzaForm extends React.Component {
     autoBind(this);
   }
 
-  onChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    }, () => console.log(this.state));
+  onChange(event, { name, value }) {
+    if (event.target.value === undefined) {
+      this.setState({
+        [name]: value
+      });
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
   }
 
   onSubmit(event) {
@@ -46,7 +52,6 @@ class NewPizzaForm extends React.Component {
     //   });
     const data = { name: this.state.name, style: this.state.style, creator: this.state.creator, URL: this.state.URL, ingredients: [this.state.ingredient1, this.state.ingredient2] };
     this.props.addPizza(data);
-    window.data = data;
     this.clearForm();
   }
 
@@ -59,6 +64,12 @@ class NewPizzaForm extends React.Component {
       creator: '',
       URL: ''
     });
+  }
+
+  generateOptions() {
+    const employees = ['Ahamed Abbas', 'Kathy Wong', 'Sahu Kumarsneh', 'Raji Indukuru', 'Kirill Repnikov', 'Surya Saripalli', 'Nandita Dhakappa', 'Boris Doley', 'Anant Dubey', 'Alisha Sahu', 'Pushparaj Geravubana', 'Vikyanth Sudhakar', 'Joydeep Mukherjee'];
+
+    return employees.map((employeeName, idx) => ({key: idx, value: employeeName, text: employeeName}));
   }
 
   render() {
@@ -74,7 +85,7 @@ class NewPizzaForm extends React.Component {
         <Form.Group widths='equal'>
           <Form.Input placeholder='Name' name='name' value={this.state.name} onChange={this.onChange} />
           <Form.Input placeholder='Style' name='style' value={this.state.style} onChange={this.onChange} />
-          <Form.Input placeholder='Creator' name='creator' value={this.state.creator} onChange={this.onChange} />
+          <Form.Field placeholder='Creator' name='creator' value={this.state.creator} control={Form.Select} options={this.generateOptions()} onChange={(event, { name, value }) => this.onChange(event, { name, value })} />
           <Form.Input placeholder='Image URL' name='URL' value={this.state.URL} onChange={this.onChange} />
         </Form.Group>
         <Form.Button positive id='form-button'>Add Pizza</Form.Button>

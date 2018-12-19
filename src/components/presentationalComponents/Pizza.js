@@ -14,7 +14,6 @@ const Pizza = (props) => {
           <Card.Meta>
             <span>{pizza.creator}</span>
           </Card.Meta>
-          <Card.Description>{`This is some super tasty pizza, especially since ${pizza.creator} made it.`}</Card.Description>
         </Card.Content>
         <Card.Content extra>
           {`Ingredients are: ${pizza.ingredients[0]}, ${pizza.ingredients[1]}`}
