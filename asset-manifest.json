@@ -1,17 +1,17 @@
 {
   "main.css": "/pizzapals1/static/css/main.37536a71.chunk.css",
-  "main.js": "/pizzapals1/static/js/main.ed866071.chunk.js",
-  "main.js.map": "/pizzapals1/static/js/main.ed866071.chunk.js.map",
+  "main.js": "/pizzapals1/static/js/main.f9c5b9e1.chunk.js",
+  "main.js.map": "/pizzapals1/static/js/main.f9c5b9e1.chunk.js.map",
   "static/css/1.33eeb13f.chunk.css": "/pizzapals1/static/css/1.33eeb13f.chunk.css",
   "static/js/1.136c9fa5.chunk.js": "/pizzapals1/static/js/1.136c9fa5.chunk.js",
   "static/js/1.136c9fa5.chunk.js.map": "/pizzapals1/static/js/1.136c9fa5.chunk.js.map",
   "runtime~main.js": "/pizzapals1/static/js/runtime~main.d41aa432.js",
   "runtime~main.js.map": "/pizzapals1/static/js/runtime~main.d41aa432.js.map",
-  "static/media/semantic.min.css": "/pizzapals1/static/media/flags.9c74e172.png",
+  "static/media/semantic.min.css": "/pizzapals1/static/media/icons.0ab54153.woff2",
   "static/media/pizza.png": "/pizzapals1/static/media/pizza.1ca2ef69.png",
   "static/css/main.37536a71.chunk.css.map": "/pizzapals1/static/css/main.37536a71.chunk.css.map",
   "static/css/1.33eeb13f.chunk.css.map": "/pizzapals1/static/css/1.33eeb13f.chunk.css.map",
   "index.html": "/pizzapals1/index.html",
-  "precache-manifest.ff3277bb76b2afbcc2d6f24c693fbe98.js": "/pizzapals1/precache-manifest.ff3277bb76b2afbcc2d6f24c693fbe98.js",
+  "precache-manifest.9aae3af1c943f2c3d0a45a14ee699fae.js": "/pizzapals1/precache-manifest.9aae3af1c943f2c3d0a45a14ee699fae.js",
   "service-worker.js": "/pizzapals1/service-worker.js"
 }
