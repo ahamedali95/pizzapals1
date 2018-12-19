@@ -15,9 +15,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:4000/pizzas')
-      .then(response => response.json())
-        .then(data => this.props.setPizzas(data))
+    // fetch('http://localhost:4000/pizzas')
+    //   .then(response => response.json())
+    //     .then(data => this.props.setPizzas(data))
+    this.props.setPizzas([]);
   }
 
   render() {
@@ -38,3 +39,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(null, mapDispatchToProps)(App);
+
+
+var config = {}
