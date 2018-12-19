@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/pizzapals1/precache-manifest.9aae3af1c943f2c3d0a45a14ee699fae.js"
+  "/pizzapals1/precache-manifest.bf6568029217a469e31d9051a3d0526c.js"
 );
 
 workbox.clientsClaim();
