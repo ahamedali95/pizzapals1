@@ -67,7 +67,7 @@ class NewPizzaForm extends React.Component {
   }
 
   generateOptions() {
-    const employees = ['Ahamed Abbas', 'Kathy Wong', 'Sahu Kumarsneh', 'Raji Indukuru', 'Kirill Repnikov', 'Surya Saripalli', 'Nandita Dhakappa', 'Boris Doley', 'Anant Dubey', 'Alisha Sahu', 'Pushparaj Geravubana', 'Vikyanth Sudhakar', 'Joydeep Mukherjee'];
+    const employees = ['Ahamed Abbas', 'Mcvvina Lin', 'Kathy Wong', 'Sahu Kumarsneh', 'Raji Indukuru', 'Kirill Repnikov', 'Surya Saripalli', 'Nandita Dhakappa', 'Boris Doley', 'Anant Dubey', 'Alisha Sahu', 'Pushparaj Geravubana', 'Vikyanth Sudhakar', 'Joydeep Mukherjee'];
 
     return employees.map((employeeName, idx) => ({key: idx, value: employeeName, text: employeeName}));
   }
