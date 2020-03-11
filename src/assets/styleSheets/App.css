@@ -1,5 +1,5 @@
-.App {
-  text-align: center;
+body {
+  background-image: url('../images/background.jpg');
 }
 
 .App-logo {
@@ -8,55 +8,68 @@
 }
 
 .App-header {
-  background-color: white;
   min-height: 35vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(7px + 2vmin);
-  color: black;
+  color: white;
 }
 
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: rotate(-5deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(5deg);
   }
 }
 
-#form {
-  width: 900px;
-  margin: 0 auto;
+.form-title {
+  color: #21ba45 !important;
+  font-size: 20px !important;
 }
 
-#form-title {
-  color: green;
-  font-size: 20px;
-}
-
-#form-button {
-  float: left;
-  background-color: green
-}
-
-#pizza-list {
-  width: 900px;
-  margin: 60px auto;
+.pizza-list {
+  margin: 30px auto !important;
   border-style: solid;
   border-radius: 5px;
   border-width: 1px;
   border-color: #BEBEBE;
 }
 
-#image {
+.image {
   width: auto;
   height: 250px;
 }
 
-#edit-button {
-  width: 100%;
-  height: 100%
+.pizzas-loader {
+  margin-top: 50px;
+}
+
+.app-name {
+  font-family: 'Zapfino', 'Times New Roman', sans-serif;
+  margin-top: 24px;
+  font-size: 40px;
+  font-weight: 900;
+  text-shadow: 0 0 3px red, 0 0 5px red;
+}
+
+.page-level-alert {
+  width: 900px !important;
+  margin: 0 auto !important;
+  justify-content: center;
+}
+
+.logout-button {
+  float: right !important;
+}
+
+.login-title {
+  text-align: center;
+}
+
+.login-button {
+  justify-content: center !important;
 }

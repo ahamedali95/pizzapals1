@@ -1,103 +1,245 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react';
-import autoBind from 'react-autobind';
-
-import { addPizza } from '../../actions/index.js';
-
 import { connect } from 'react-redux';
+import { Form, Segment } from 'semantic-ui-react';
+import autoBind from 'react-autobind';
+import { addPizza, addAlert, removeAlert } from '../../actions/index.js';
+import { employees, pizzaSubmissionSuccessAlert, pizzaSubmissionFailureAlert, logoutSuccessAlert } from '../../constants';
+import { getPizzaFormAlertsList } from '../../utilities';
+import createPizza from '../../services/createPizza';
 
 class NewPizzaForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      ingredient1: '',
-      ingredient2: '',
-      name: '',
-      style: '',
-      creator: '',
-      URL: ''
-    }
+      isLoaderShown: false,
+      pizza: {
+        ingredient1: '',
+        ingredient2: '',
+        name: '',
+        style: '',
+        creator: '',
+        imageURL: ''
+      },
+      invalidFields: []
+    };
 
     autoBind(this);
   }
 
+  componentWillUnmount() {
+   this.props.addAlert(logoutSuccessAlert);
+  }
+
+  onClick() {
+    this.props.history.push('logout');
+  }
+
   onChange(event, { name, value }) {
-    if (event.target.value === undefined) {
-      this.setState({
-        [name]: value
-      });
-    } else {
-      this.setState({
-        [event.target.name]: event.target.value
-      })
-    }
+    this.setState(prevState => {
+      return {
+        pizza: {
+          ...prevState.pizza,
+          [name]: value
+        }
+      };
+    });
   }
 
   onSubmit(event) {
-    // event.preventDefault();
-    //
-    // const data = { name: this.state.name, style: this.state.style, creator: this.state.creator, URL: this.state.URL, ingredients: [this.state.ingredient1, this.state.ingredient2] };
-    // fetch('http://localhost:4000/pizzas', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //  .then(response => response.json())
-    //   .then(data => {
-    //     this.props.addPizza(data);
-    //     this.clearForm();
-    //   });
-    const data = { name: this.state.name, style: this.state.style, creator: this.state.creator, URL: this.state.URL, ingredients: [this.state.ingredient1, this.state.ingredient2] };
-    this.props.addPizza(data);
-    this.clearForm();
+    event.preventDefault();
+    const invalidFields = this.performValidation();
+
+    if (invalidFields.length) {
+      this.setState({ invalidFields }, () => {
+        this.props.removeAlert('pizza-form-invalid-fields-alert');
+        this.props.removeAlert('pizza-submission-success-alert');
+        this.props.removeAlert('pizza-submission-failure-alert');
+        this.props.addAlert(getPizzaFormAlertsList(invalidFields));
+      });
+    } else {
+      this.props.removeAlert('pizza-form-invalid-fields-alert');
+      this.props.removeAlert('pizza-submission-success-alert');
+      this.props.removeAlert('pizza-submission-failure-alert');
+      this.prePizzaCreationProcess();
+    }
+  }
+
+  performValidation() {
+    const invalidFields = [];
+    const { pizza } = this.state;
+    const fields = ['ingredient1', 'ingredient2', 'name', 'style', 'creator'];
+
+    for (const key in pizza) {
+      const value = pizza[key];
+
+      if (fields.includes(key) && (!value || value.length > 50)) {
+        invalidFields.push(key);
+      } else if (key === 'imageURL' && (!value || value.length > 2083)) {
+        invalidFields.push(key);
+      }
+    }
+
+    return invalidFields;
+  }
+
+  handleLoaderToggle(callback, callbackArgs) {
+    this.setState(prevState => ({ isLoaderShown: !prevState.isLoaderShown }), () => callback(callbackArgs));
+  }
+
+  prePizzaCreationProcess() {
+    this.handleLoaderToggle(this.createPizza);
+  }
+
+  async createPizza() {
+    const { pizza } = this.state;
+
+    const formattedData = {
+      name: pizza.name,
+      style: pizza.style,
+      creator: pizza.creator,
+      imageURL: pizza.imageURL,
+      ingredients: [{ name: pizza.ingredient1 }, { name: pizza.ingredient2 }]
+    };
+    const data = await createPizza(formattedData);
+    this.handleLoaderToggle(this.postPizzaCreationProcess, data);
+  }
+
+  postPizzaCreationProcess(data) {
+    if (data) {
+      this.props.addAlert(pizzaSubmissionSuccessAlert);
+      this.props.addPizza(data);
+      this.clearForm();
+      setTimeout(() => this.props.removeAlert('pizza-submission-success-alert'), 3000);
+    } else {
+      this.props.addAlert(pizzaSubmissionFailureAlert);
+    }
   }
 
   clearForm() {
     this.setState({
-      ingredient1: '',
-      ingredient2: '',
-      name: '',
-      style: '',
-      creator: '',
-      URL: ''
+      pizza: {
+        ingredient1: '',
+        ingredient2: '',
+        name: '',
+        style: '',
+        creator: '',
+        imageURL: ''
+      },
+      invalidFields: []
     });
   }
 
-  generateOptions() {
-    const employees = ['Ahamed Abbas', 'Mcvvina Lin', 'Kathy Wong', 'Sahu Kumarsneh', 'Raji Indukuru', 'Kirill Repnikov', 'Surya Saripalli', 'Nandita Dhakappa', 'Boris Doley', 'Anant Dubey', 'Alisha Sahu', 'Pushparaj Geravubana', 'Vikyanth Sudhakar', 'Joydeep Mukherjee'];
-
+  static generateOptions() {
     return employees.map((employeeName, idx) => ({key: idx, value: employeeName, text: employeeName}));
   }
 
   render() {
+    const { isLoaderShown, pizza, invalidFields } = this.state;
+
     return (
-      <Form id='form' onSubmit={this.onSubmit}>
-        <Form.Group inline>
-          <label id='form-title'><strong>Create a Pizza</strong></label>
-        </Form.Group>
-        <Form.Group widths='equal'>
-          <Form.Input fluid label='Ingredient Name' placeholder='First Ingredient' name='ingredient1' value={this.state.ingredient1} onChange={this.onChange} />
-          <Form.Input fluid label='Ingredient Name' placeholder='Second Ingredient' name='ingredient2' value={this.state.ingredient2} onChange={this.onChange} />
-        </Form.Group>
-        <Form.Group widths='equal'>
-          <Form.Input placeholder='Name' name='name' value={this.state.name} onChange={this.onChange} />
-          <Form.Input placeholder='Style' name='style' value={this.state.style} onChange={this.onChange} />
-          <Form.Field placeholder='Creator' name='creator' value={this.state.creator} control={Form.Select} options={this.generateOptions()} onChange={(event, { name, value }) => this.onChange(event, { name, value })} />
-          <Form.Input placeholder='Image URL' name='URL' value={this.state.URL} onChange={this.onChange} />
-        </Form.Group>
-        <Form.Button positive id='form-button'>Add Pizza</Form.Button>
-      </Form>
+      <>
+        <div className='row'>
+          <div className="col-2 offset-10">
+            <Form.Button
+              className='logout-button'
+              negative
+              onClick={this.onClick}
+            >
+              Log out
+            </Form.Button>
+          </div>
+        </div>
+        <Segment inverted>
+          <Form
+            inverted
+            loading={isLoaderShown}
+            onSubmit={this.onSubmit}
+          >
+            <Form.Group inline>
+              <label className='form-title'>
+                <strong>Create a Pizza</strong>
+              </label>
+            </Form.Group>
+            <Form.Group widths='equal'>
+              <Form.Input
+                error={invalidFields.includes("ingredient1")}
+                fluid
+                label='Ingredient Name'
+                name='ingredient1'
+                placeholder='First Ingredient'
+                onChange={this.onChange}
+                value={pizza.ingredient1}
+              />
+              <Form.Input
+                error={invalidFields.includes("ingredient2")}
+                fluid
+                label='Ingredient Name'
+                name='ingredient2'
+                placeholder='Second Ingredient'
+                onChange={this.onChange}
+                value={pizza.ingredient2}
+              />
+            </Form.Group>
+            <Form.Group widths='equal'>
+              <Form.Input
+                error={invalidFields.includes("name")}
+                fluid
+                label='Name'
+                name='name'
+                placeholder='Name'
+                onChange={this.onChange}
+                value={pizza.name}
+              />
+              <Form.Input
+                error={invalidFields.includes("style")}
+                fluid
+                label='Style'
+                name='style'
+                placeholder='Style'
+                onChange={this.onChange}
+                value={pizza.style}
+              />
+              <Form.Field
+                error={invalidFields.includes("creator")}
+                fluid
+                control={Form.Select}
+                label='Creator'
+                name='creator'
+                placeholder='Creator'
+                value={pizza.creator}
+                options={NewPizzaForm.generateOptions()}
+                onChange={(event, { name, value }) => this.onChange(event, { name, value })}
+              />
+              <Form.Input
+                error={invalidFields.includes("imageURL")}
+                fluid
+                label='image URL'
+                name='imageURL'
+                placeholder='Image URL'
+                onChange={this.onChange}
+                value={pizza.imageURL}
+              />
+            </Form.Group>
+            <Form.Button
+              disabled={isLoaderShown}
+              positive
+            >
+              Add Pizza
+            </Form.Button>
+          </Form>
+        </Segment>
+      </>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPizza: (data) => (dispatch(addPizza(data)))
+    addPizza: (data) => (dispatch(addPizza(data))),
+    addAlert: value => dispatch(addAlert(value)),
+    removeAlert: value => dispatch(removeAlert(value))
   };
-}
+};
 
 export default connect(null, mapDispatchToProps)(NewPizzaForm);
