@@ -1,4 +1,4 @@
-export const apiBaseUrl = (() => 'http://pizzapals.herokuapp.com')();
+export const apiBaseUrl = (() => 'https://pizzapals.herokuapp.com')();
 
 export const pizzaFetchFailureAlert = (() => {
   return {
