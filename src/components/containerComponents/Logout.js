@@ -29,6 +29,7 @@ class Logout extends Component {
           <Error />
           <Form.Button
             content='Login again'
+            data-test='login-again-button'
             icon='left arrow'
             onClick={this.onClick}
           />

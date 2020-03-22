@@ -8,9 +8,10 @@ const Error = props => {
     props.alerts.map(alert => {
       return (
         <Message
-          key={uuid()}
           color={alert.color}
+          data-test='error-component'
           header={alert.header}
+          key={uuid()}
           list={alert.list}
         />
       );

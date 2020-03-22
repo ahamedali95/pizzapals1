@@ -6,7 +6,10 @@ import Pizza from './Pizza';
 const PizzaList = props => {
   console.log("pizzalist");
   return (
-    <div className='mt-3'>
+    <div
+      className='mt-3'
+      data-test='pizza-list-component'
+    >
       <Segment inverted>
         <Loader active={props.isPizzaLoaderShown} />
         {

@@ -26,7 +26,7 @@ class App extends Component {
   postPizzaFetchProcess(data) {
     if (data) {
       this.props.setIsPizzaLoaderShown(false);
-      const sortedPizzasByCreatedTime = data.sort((pizza1, pizza2) => new Date(pizza2.createdTime) - new Date(pizza1.createdTime))
+      const sortedPizzasByCreatedTime = data.sort((pizza1, pizza2) => new Date(pizza2.createdTime) - new Date(pizza1.createdTime));
       this.props.setPizzas(sortedPizzasByCreatedTime);
     } else {
       this.props.setIsPizzaLoaderShown(false);

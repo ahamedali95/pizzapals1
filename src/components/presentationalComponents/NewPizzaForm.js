@@ -143,6 +143,7 @@ class NewPizzaForm extends React.Component {
           <div className="col-2 offset-10">
             <Form.Button
               className='logout-button'
+              data-test='logout-button'
               negative
               onClick={this.onClick}
             >
@@ -163,6 +164,7 @@ class NewPizzaForm extends React.Component {
             </Form.Group>
             <Form.Group widths='equal'>
               <Form.Input
+                data-test='homepage-ingredient-1-input'
                 error={invalidFields.includes("ingredient1")}
                 fluid
                 label='Ingredient Name'
@@ -172,6 +174,7 @@ class NewPizzaForm extends React.Component {
                 value={pizza.ingredient1}
               />
               <Form.Input
+                data-test='homepage-ingredient-2-input'
                 error={invalidFields.includes("ingredient2")}
                 fluid
                 label='Ingredient Name'
@@ -183,6 +186,7 @@ class NewPizzaForm extends React.Component {
             </Form.Group>
             <Form.Group widths='equal'>
               <Form.Input
+                data-test='homepage-pizza-name-input'
                 error={invalidFields.includes("name")}
                 fluid
                 label='Name'
@@ -192,6 +196,7 @@ class NewPizzaForm extends React.Component {
                 value={pizza.name}
               />
               <Form.Input
+                data-test='homepage-pizza-style-input'
                 error={invalidFields.includes("style")}
                 fluid
                 label='Style'
@@ -201,6 +206,7 @@ class NewPizzaForm extends React.Component {
                 value={pizza.style}
               />
               <Form.Field
+                data-test='homepage-pizza-creator-input'
                 error={invalidFields.includes("creator")}
                 fluid
                 control={Form.Select}
@@ -212,6 +218,7 @@ class NewPizzaForm extends React.Component {
                 onChange={(event, { name, value }) => this.onChange(event, { name, value })}
               />
               <Form.Input
+                data-test='homepage-pizza-image-url-input'
                 error={invalidFields.includes("imageURL")}
                 fluid
                 label='image URL'
@@ -222,6 +229,7 @@ class NewPizzaForm extends React.Component {
               />
             </Form.Group>
             <Form.Button
+              data-test='homepage-submit-button'
               disabled={isLoaderShown}
               positive
             >

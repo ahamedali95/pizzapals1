@@ -76,6 +76,7 @@ class Login extends Component {
                 </Form.Group>
                 <Form.Group>
                   <Form.Input
+                    data-test='login-username-input'
                     error={invalidFields.includes('userName')}
                     label='Username'
                     name='userName'
@@ -87,6 +88,7 @@ class Login extends Component {
                 </Form.Group>
                 <Form.Group>
                   <Form.Input
+                    data-test='login-password-input'
                     error={invalidFields.includes('password')}
                     label='Password'
                     name='password'
@@ -99,6 +101,7 @@ class Login extends Component {
                 </Form.Group>
                 <Form.Button
                   className='row justify-content-center'
+                  data-test='login-submit-button'
                   positive
                 >
                   Submit
