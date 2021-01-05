@@ -5,7 +5,7 @@
   "homepage": "https://ahamedali95.github.io/pizzapals1/",
   "dependencies": {
     "@cypress/code-coverage": "^1.14.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "cypress": "^4.2.0",
     "gh-pages": "^2.0.1",
